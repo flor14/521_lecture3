@@ -1,0 +1,523 @@
+---
+title: "DSCI 521 - Lecture 2"
+subtitle: "Getting groovy with Git and GitHub"  
+author: 
+  - "MDS 2021/22"
+output:
+  xaringan::moon_reader:
+    seal: false # saco filmina de inicio
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(xaringanExtra)
+library(tidyverse)
+library(knitr)
+library(nomnoml)
+library(countdown)
+xaringanExtra::use_logo(
+  image_url = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/xaringan.png"
+)
+xaringanExtra::use_panelset()
+xaringanExtra::use_broadcast()
+xaringanExtra::use_share_again()
+xaringanExtra::style_share_again(share_buttons = c("twitter", "linkedin"))
+xaringanExtra::use_tachyons()
+xaringanExtra::use_fit_screen()
+xaringanExtra::use_tile_view() # O
+style_mono_accent(
+  base_color = "#0dc96f",
+  background_color = "#ffffff",
+  inverse_background_color = "#3298cb",
+  header_color = "#022044",
+  inverse_header_color = "#ffffff", 
+  inverse_text_color = "#ffffff",
+  code_inline_color = "#179c55",
+  link_color= "#0000FF",
+  text_font_size = "25px",
+  header_font_google = google_font("Poppins", "Regular", "400"),
+  text_font_google   = google_font("Darker Grotesque", "500"),
+  code_font_google   = google_font("Fira Mono"),
+  )
+
+```
+
+```{r metathis, warning=FALSE, echo=FALSE}
+# library(metathis)
+# meta() %>%
+#   meta_name("github-repo" = "flor14/rladies-jujuy") %>% 
+#   meta_social(
+#     title = "Meetup R-Ladies Jujuy",
+#     description = paste(
+#       "Mi próximo artículo científico con R:", 
+#       "Compendios de Investigación, Reproducibilidad e",
+#       "Interactividad en las publicaciones académicas"
+#     ),
+#     url = "https://flor14.github.io/rladies-jujuy/presentacion.html?panelset=licencia#1",
+#     image = "https://res.cloudinary.com/flor/image/upload/v1608248822/jujuy-colores_frmvax.jpg",
+#     image_alt = paste(
+#       "Charla para el capítulo de R-Ladies de Jujuy, Argentina.",
+#       "Diciembre de 2020"
+#       ),
+#     og_type = "website",
+#     og_author = "Florencia D'Andrea",
+#     twitter_card_type = "summary_large_image",
+#     twitter_creator = "@cantoflor_87",
+#     twitter_site = "@cantoflor_87"
+#   )
+```
+
+
+
+
+class: middle, center
+
+```{r hex, fig.align='center', echo = FALSE, out.width=150} 
+    knitr::include_graphics("img/hex.png")
+```
+
+
+---
+
+
+class: bottom
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+### DSCI 521 - Lecture 2
+### **Getting groovy with Git and GitHub**
+
+ .large[#### Computing Platforms for Data Science - UBC MDS 2021/22
+]]
+
+---
+
+## Lecture 2
+
+1. Create a **new repository** on GitHub via the web interface
+
+--
+
+
+2. View your Git history via `git log` and restore an older version of a file via `git restore` 
+
+--
+
+3. Deal with **merge conflicts** at the command line and in VS Code
+
+--
+
+4. Stash your changes with `git stash` before pulling from GitHub
+
+
+---
+
+
+class: center, middle
+
+```{r obj2, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/obj2.png")
+```
+
+
+.footnote[[images: Unsplash](https://unsplash.com)]
+---
+
+
+class: center, middle
+
+```{r obj, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/obj1.png")
+```
+
+.footnote[[images: Unsplash](https://unsplash.com)]
+---
+
+
+## Lecture 1
+
+**git add**
+
+**git commit**
+
+**git push**
+
+
+
+---
+```{r git, fig.align='center', echo = FALSE,out.width=250} 
+knitr::include_graphics("img/gitgithub.png")
+```
+
+
+
+
+
+---
+class: middle, center, inverse
+
+
+# CREATING A REPOSITORY
+
+---
+
+
+.pull-left[
+
+
+```{r git2, fig.align='center', echo = FALSE, out.width=200} 
+knitr::include_graphics("img/github_online.png")
+```
+
+#### Method 1
+1. **Create it on GitHub** 
+2. Clone it to your local computer
+
+]
+
+--
+
+.pull-right[
+
+
+```{r git3, fig.align='center', echo = FALSE,out.width=185} 
+knitr::include_graphics("img/git_local.png")
+```
+
+
+
+#### Method 2 
+1. **Start in your local computer**
+2. Create a new repository on GitHub 
+3. Use Git to tell your local repository where the remote is
+]
+
+
+--
+
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+**Method 1** is usually the most convenient 
+
+]
+
+
+
+
+
+---
+
+class: middle, center, inverse
+
+
+# CREATING A REPOSITORY
+### from GitHub
+
+
+---
+
+### www.github.com 
+```{r repo, fig.align='center', echo = FALSE,out.width=500} 
+knitr::include_graphics("img/new_repo.png")
+```
+---
+
+
+
+## Edit files directly on Github via the web interface
+
+* You can use GitHub to edit if you have minor changes. 
+
+
+
+
+```{r repo2, fig.align='center', echo = FALSE,out.width=700} 
+knitr::include_graphics("img/edit_repo.png")
+```
+
+
+---
+
+```{r clone, fig.align='center', echo = FALSE,out.width=350} 
+knitr::include_graphics("img/clone.png")
+```
+---
+
+class: middle, center
+
+## Download or clone?
+
+--
+
+Downloading a repository just **downloads the files** from the most recent commit
+
+--
+
+Cloning a repository downloads a **functional git** repo and the **project history**
+
+
+
+
+
+---
+
+class: middle, center, inverse
+
+#  VIEWING YOUR GIT HISTORY 
+
+---
+
+## `git log`
+#### Viewing the history of a project
+
+```{r gitlog, fig.align='center', echo = FALSE,out.width=700} 
+knitr::include_graphics("img/gitlog.png")
+```
+> You can use `git log --oneline` for more succinct output 
+
+---
+
+class: middle, center, inverse
+
+#  RESTORING AN OLDER VERSION
+---
+
+## Refer to a commit 
+
+* Each commits has a full 40-character SHA-1 hash
+
+```bash
+commit b22d6421363c7b82e2b88b0b5f1f25edca703303
+```
+
+--
+
+* You can use a short SHA-1 (at least four characters long and unambiguous)
+
+```bash
+commit b22d
+```
+
+>  `git show SHORT_SHA-1` 
+
+.footnote[[Git Tools](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)]
+
+
+
+
+---
+
+## `git restore`
+#### Restoring an older version of a file
+
+
+```bash
+ git restore -s SHORT_SHA-1 FILENAME
+```
+
+> Do not forget to add and commit the changes!
+
+
+---
+
+
+### Make changes to your files in the remote repo on GitHub
+
+
+.pull-left[
+
+
+```{r git22, fig.align='center', echo = FALSE, out.width=125} 
+knitr::include_graphics("img/github_online.png")
+```
+
+##### Edit files directly on Github via the web interface
+1. Click on the pen tool 
+2. Edit the file
+3. Provide a commit message 
+4. Click on the button "Commit changes" 
+]
+
+--
+
+.pull-right[
+
+
+```{r git32, fig.align='center', echo = FALSE,out.width=100} 
+knitr::include_graphics("img/git_local.png")
+```
+
+
+
+##### Working locally
+1. Make changes on files you cloned
+2. `git add` add them to the staging area
+3. `git commit` provide a commit message
+4. `git push` the changes to GitHub
+
+]
+
+---
+
+
+class: middle, center
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+Note that there is no step for adding to the staging area on GitHub.
+
+
+The button "Commit changes" to save your work is essentially `git add` + `git commit` in one click.
+
+]
+
+
+---
+
+class: middle, center
+
+### Should I clone the repo each time there is a change in the remote repository?
+
+--
+
+`git pull` 
+
+Update repo with changes made to the remote repository
+
+---
+
+```{r pushpull, fig.align='center', echo = FALSE,out.width=700} 
+knitr::include_graphics("img/pushpull.png")
+```
+
+---
+
+## Scenarios
+
+
+1. Changes to a document where different lines are modified  
+
+--
+
+**Git can automatically merge the changes**
+
+--
+
+2. Changes to a document where the same line(s) are modified  
+
+--
+
+**Git CANNOT automatically merge the changes**
+**MERGE CONFLICT**
+
+---
+
+class: middle, center, inverse
+
+# MERGE CONFLICTS
+
+
+---
+
+## `git pull`
+
+
+1. **fetch** the content of the remote
+2. **merge** it into your repository
+
+---
+
+## When you try to push...
+
+```{r mc, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/mc_gitpush.png")
+```
+
+> What happens if I try to pull?
+
+Scenario 1 = problem solved  
+
+Scenario 2 = merge conflict!
+
+---
+
+## VS Code to fix merge conflicts
+
+what changes you want to keep?
+
+```{r mcvs, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/mcvscode.png")
+```
+
+
+---
+
+
+class: middle, center
+
+### It is a good idea to pull before starting to work in your local changes!
+But what happens if you forget?
+---
+
+class: middle, center, inverse
+
+# Stashing 
+#### local non-committed changes before pulling
+
+---
+
+class: middle, center
+
+
+#### Please **commit your changes** or **stash** them before you merge.
+
+
+
+---
+
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[ 
+
+## Attribution
+
+* [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan and the STAT 545 TAs
+* [Software Carpentry](https://software-carpentry.org/lessons/), specifically the Unix Shell and Git lessons
+
+                                                                                                                                      
+]
+
+
+
+---
+
+class: inverse, middle, center
+
+## Tips lab 1
+
+Practice on your computer!
+
+Remember the office hours
+
+
+---
+
+class: inverse, middle, center
+
+# Thank you!
+
+
+
+
+#### Florencia D'Andrea
+#### fdandrea @ cs.ubc.ca

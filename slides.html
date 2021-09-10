@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>DSCI 521 - Lecture 2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MDS 2021/22" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra_fit-screen/fit-screen.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+class: middle, center
+
+&lt;img src="img/hex.png" width="150" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+class: bottom
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+### DSCI 521 - Lecture 2
+### **Getting groovy with Git and GitHub**
+
+ .large[#### Computing Platforms for Data Science - UBC MDS 2021/22
+]]
+
+---
+
+## Lecture 2
+
+1. Create a **new repository** on GitHub via the web interface
+
+--
+
+
+2. View your Git history via `git log` and restore an older version of a file via `git restore` 
+
+--
+
+3. Deal with **merge conflicts** at the command line and in VS Code
+
+--
+
+4. Stash your changes with `git stash` before pulling from GitHub
+
+
+---
+
+
+class: center, middle
+
+&lt;img src="img/obj2.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[[images: Unsplash](https://unsplash.com)]
+---
+
+
+class: center, middle
+
+&lt;img src="img/obj1.png" width="900" style="display: block; margin: auto;" /&gt;
+
+.footnote[[images: Unsplash](https://unsplash.com)]
+---
+
+
+## Lecture 1
+
+**git add**
+
+**git commit**
+
+**git push**
+
+
+
+---
+&lt;img src="img/gitgithub.png" width="250" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+---
+class: middle, center, inverse
+
+
+# CREATING A REPOSITORY
+
+---
+
+
+.pull-left[
+
+
+&lt;img src="img/github_online.png" width="200" style="display: block; margin: auto;" /&gt;
+
+#### Method 1
+1. **Create it on GitHub** 
+2. Clone it to your local computer
+
+]
+
+--
+
+.pull-right[
+
+
+&lt;img src="img/git_local.png" width="185" style="display: block; margin: auto;" /&gt;
+
+
+
+#### Method 2 
+1. **Start in your local computer**
+2. Create a new repository on GitHub 
+3. Use Git to tell your local repository where the remote is
+]
+
+
+--
+
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+**Method 1** is usually the most convenient 
+
+]
+
+
+
+
+
+---
+
+class: middle, center, inverse
+
+
+# CREATING A REPOSITORY
+### from GitHub
+
+
+---
+
+### www.github.com 
+&lt;img src="img/new_repo.png" width="500" style="display: block; margin: auto;" /&gt;
+---
+
+
+
+## Edit files directly on Github via the web interface
+
+* You can use GitHub to edit if you have minor changes. 
+
+
+
+
+&lt;img src="img/edit_repo.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+&lt;img src="img/clone.png" width="350" style="display: block; margin: auto;" /&gt;
+---
+
+class: middle, center
+
+## Download or clone?
+
+--
+
+Downloading a repository just **downloads the files** from the most recent commit
+
+--
+
+Cloning a repository downloads a **functional git** repo and the **project history**
+
+
+
+
+
+---
+
+class: middle, center, inverse
+
+#  VIEWING YOUR GIT HISTORY 
+
+---
+
+## `git log`
+#### Viewing the history of a project
+
+&lt;img src="img/gitlog.png" width="700" style="display: block; margin: auto;" /&gt;
+&gt; You can use `git log --oneline` for more succinct output 
+
+---
+
+class: middle, center, inverse
+
+#  RESTORING AN OLDER VERSION
+---
+
+## Refer to a commit 
+
+* Each commits has a full 40-character SHA-1 hash
+
+```bash
+commit b22d6421363c7b82e2b88b0b5f1f25edca703303
+```
+
+--
+
+* You can use a short SHA-1 (at least four characters long and unambiguous)
+
+```bash
+commit b22d
+```
+
+&gt;  `git show SHORT_SHA-1` 
+
+.footnote[[Git Tools](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)]
+
+
+
+
+---
+
+## `git restore`
+#### Restoring an older version of a file
+
+
+```bash
+ git restore -s SHORT_SHA-1 FILENAME
+```
+
+&gt; Do not forget to add and commit the changes!
+
+
+---
+
+
+### Make changes to your files in the remote repo on GitHub
+
+
+.pull-left[
+
+
+&lt;img src="img/github_online.png" width="125" style="display: block; margin: auto;" /&gt;
+
+##### Edit files directly on Github via the web interface
+1. Click on the pen tool 
+2. Edit the file
+3. Provide a commit message 
+4. Click on the button "Commit changes" 
+]
+
+--
+
+.pull-right[
+
+
+&lt;img src="img/git_local.png" width="100" style="display: block; margin: auto;" /&gt;
+
+
+
+##### Working locally
+1. Make changes on files you cloned
+2. `git add` add them to the staging area
+3. `git commit` provide a commit message
+4. `git push` the changes to GitHub
+
+]
+
+---
+
+
+class: middle, center
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+Note that there is no step for adding to the staging area on GitHub.
+
+
+The button "Commit changes" to save your work is essentially `git add` + `git commit` in one click.
+
+]
+
+
+---
+
+class: middle, center
+
+### Should I clone the repo each time there is a change in the remote repository?
+
+--
+
+`git pull` 
+
+Update repo with changes made to the remote repository
+
+---
+
+&lt;img src="img/pushpull.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Scenarios
+
+
+1. Changes to a document where different lines are modified  
+
+--
+
+**Git can automatically merge the changes**
+
+--
+
+2. Changes to a document where the same line(s) are modified  
+
+--
+
+**Git CANNOT automatically merge the changes**
+**MERGE CONFLICT**
+
+---
+
+class: middle, center, inverse
+
+# MERGE CONFLICTS
+
+
+---
+
+## `git pull`
+
+
+1. **fetch** the content of the remote
+2. **merge** it into your repository
+
+---
+
+## When you try to push...
+
+&lt;img src="img/mc_gitpush.png" width="900" style="display: block; margin: auto;" /&gt;
+
+&gt; What happens if I try to pull?
+
+Scenario 1 = problem solved  
+
+Scenario 2 = merge conflict!
+
+---
+
+## VS Code to fix merge conflicts
+
+what changes you want to keep?
+
+&lt;img src="img/mcvscode.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+
+class: middle, center
+
+### It is a good idea to pull before starting to work in your local changes!
+But what happens if you forget?
+---
+
+class: middle, center, inverse
+
+# Stashing 
+#### local non-committed changes before pulling
+
+---
+
+class: middle, center
+
+
+#### Please **commit your changes** or **stash** them before you merge.
+
+
+
+---
+
+
+.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[ 
+
+## Attribution
+
+* [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan and the STAT 545 TAs
+* [Software Carpentry](https://software-carpentry.org/lessons/), specifically the Unix Shell and Git lessons
+
+                                                                                                                                      
+]
+
+
+
+---
+
+class: inverse, middle, center
+
+## Tips lab 1
+
+Practice on your computer!
+
+Remember the office hours
+
+
+---
+
+class: inverse, middle, center
+
+# Thank you!
+
+
+
+
+#### Florencia D'Andrea
+#### fdandrea @ cs.ubc.ca
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
