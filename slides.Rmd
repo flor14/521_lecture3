@@ -1,6 +1,6 @@
 ---
-title: "DSCI 521 - Lecture 2"
-subtitle: "Getting groovy with Git and GitHub"  
+title: "DSCI 521 - Lecture 3"
+subtitle: "Branches, forks, and streams... Welcome to the Git nature walk!"  
 author: 
   - "MDS 2021/22"
 output:
@@ -94,30 +94,30 @@ class: middle, center
 class: bottom
 
 .bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-### DSCI 521 - Lecture 2
-### **Getting groovy with Git and GitHub**
+### DSCI 521 - Lecture 3
+### **Branches, forks, and streams... Welcome to the Git nature walk!**
 
  .large[#### Computing Platforms for Data Science - UBC MDS 2021/22
 ]]
 
+
 ---
 
-## Lecture 2
+## Lecture 3
 
-1. Create a **new repository** on GitHub via the web interface
-
---
-
-
-2. View your Git history via `git log` and restore an older version of a file via `git restore` 
+1 **Develop a feature on a branch** in a Git repo.
 
 --
 
-3. Deal with **merge conflicts** at the command line and in VS Code
+2. **Merge** the feature branch with the master branch.
 
 --
 
-4. Stash your changes with `git stash` before pulling from GitHub
+3. Create a **fork** of an existing GitHub repo.
+
+--
+
+4. Open a **pull request** from your forked repo to the upstream repo
 
 
 ---
@@ -134,390 +134,118 @@ knitr::include_graphics("img/obj2.png")
 ---
 
 
-class: center, middle
+class: center, middle, inverse
 
-```{r obj, fig.align='center', echo = FALSE,out.width=900} 
-knitr::include_graphics("img/obj1.png")
-```
-
-.footnote[[images: Unsplash](https://unsplash.com)]
----
-
-
-## Lecture 1
-
-**git add**
-
-**git commit**
-
-**git push**
-
-
+# BRANCHES
+separate work 
 
 ---
-```{r git, fig.align='center', echo = FALSE,out.width=250} 
-knitr::include_graphics("img/gitgithub.png")
-```
 
+## Why to use them?
+
+* You don't want the repository's default branch to be updated with every commit of a half-finished feature.
+
+* When features are completed, their branches will be merged into the main branch, often through a "pull request" where code is reviewed before it is merged. 
 
 
 
 
 ---
-class: middle, center, inverse
 
 
-# CREATING A REPOSITORY
-
----
-
-
-.pull-left[
-
-
-```{r git2, fig.align='center', echo = FALSE, out.width=200} 
-knitr::include_graphics("img/github_online.png")
-```
-
-#### Method 1
-1. **Create it on GitHub** 
-2. Clone it to your local computer
-
-]
-
---
-
-.pull-right[
-
-
-```{r git3, fig.align='center', echo = FALSE,out.width=185} 
-knitr::include_graphics("img/git_local.png")
+```{r obj4, fig.align='center', echo = FALSE,out.width=500} 
+knitr::include_graphics("img/branches-house-analogy.png")
 ```
 
 
-
-#### Method 2 
-1. **Start in your local computer**
-2. Create a new repository on GitHub 
-3. Use Git to tell your local repository where the remote is
-]
-
-
---
-
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-
-**Method 1** is usually the most convenient 
-
-]
-
-
-
-
-
----
-
-class: middle, center, inverse
-
-
-# CREATING A REPOSITORY
-### from GitHub
-
-
----
-
-### www.github.com 
-```{r repo, fig.align='center', echo = FALSE,out.width=500} 
-knitr::include_graphics("img/new_repo.png")
-```
----
-
-
-
-## Edit files directly on Github via the web interface
-
-* You can use GitHub to edit if you have minor changes. 
-
-
-
-
-```{r repo2, fig.align='center', echo = FALSE,out.width=700} 
-knitr::include_graphics("img/edit_repo.png")
+```{r house2, fig.align='center', echo = FALSE,out.width=500} 
+knitr::include_graphics("img/house.jfif")
 ```
 
+.footnote[[house image: Unsplash](https://unsplash.com)]
 
 ---
 
-```{r clone, fig.align='center', echo = FALSE,out.width=350} 
-knitr::include_graphics("img/clone.png")
-```
----
+###
 
-class: middle, center
+`HEAD -> main`
 
-## Download or clone?
+**main** is your default local branch
 
---
-
-Downloading a repository just **downloads the files** from the most recent commit
-
---
-
-Cloning a repository downloads a **functional git** repo and the **project history**
+**HEAD** is where you currently (on the main branch)  
 
 
 
+> You are on the main branch
 
 
 ---
 
-class: middle, center, inverse
+###
 
-#  VIEWING YOUR GIT HISTORY 
+`origin/main`
+
+**origin** is a nickname for your remote repo on GitHub
+
+**origin/main** is the main branch on your GitHub repo
+
+
+> You Github repo is on the main branch
+
+.footnote[_Note: In older repos `main` branch was called `master` branch_]
 
 ---
 
-## `git log`
-#### Viewing the history of a project
+`origin/HEAD`
 
-```{r gitlog, fig.align='center', echo = FALSE,out.width=700} 
-knitr::include_graphics("img/gitlog.png")
-```
-> You can use `git log --oneline` for more succinct output 
+You don't need to care about origin/HEAD, it just point to the default remote branch, 
+which will always be main unless you mess around with the settings on the GitHub webpage.
+
+.footnote[_Note: In older repos `main` branch was called `master` branch_]
 
 ---
 
-class: middle, center, inverse
 
-#  RESTORING AN OLDER VERSION
----
+## Now all together
 
-## Refer to a commit 
-
-* Each commits has a full 40-character SHA-1 hash
-
-```bash
-commit b22d6421363c7b82e2b88b0b5f1f25edca703303
-```
-
---
-
-* You can use a short SHA-1 (at least four characters long and unambiguous)
-
-```bash
-commit b22d
-```
-
->  `git show SHORT_SHA-1` 
-
-.footnote[[Git Tools](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)]
-
+Now let's see what happens when we make a commit locally
 
 
 
 ---
 
-## `git restore`
-#### Restoring an older version of a file
+class: center, inverse, middle
 
+# How do we create a branch?
 
-```bash
- git restore -s SHORT_SHA-1 FILENAME
-```
-
-> Do not forget to add and commit the changes!
 
 
 ---
 
 
-### Make changes to your files in the remote repo on GitHub
+## Switch to a branch
+#### `git switch`
 
 
-.pull-left[
+##  Switch to a new branch
+#### `git switch -c <name new branch>`
+#### `git switch -c lecture-todo`
 
 
-```{r git22, fig.align='center', echo = FALSE, out.width=125} 
-knitr::include_graphics("img/github_online.png")
-```
-
-##### Edit files directly on Github via the web interface
-1. Click on the pen tool 
-2. Edit the file
-3. Provide a commit message 
-4. Click on the button "Commit changes" 
-]
-
---
-
-.pull-right[
-
-
-```{r git32, fig.align='center', echo = FALSE,out.width=100} 
-knitr::include_graphics("img/git_local.png")
-```
-
-
-
-##### Working locally
-1. Make changes on files you cloned
-2. `git add` add them to the staging area
-3. `git commit` provide a commit message
-4. `git push` the changes to GitHub
-
-]
-
+.footnote["It is good practice to give branches a name that succinctly describes the feature that you want to develop."]
 ---
 
+## Pushing to a new branch
 
-class: middle, center
-
-.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-
-Note that there is no step for adding to the staging area on GitHub.
-
-
-The button "Commit changes" to save your work is essentially `git add` + `git commit` in one click.
-
-]
-
-
----
-
-class: middle, center
-
-### Should I clone the repo each time there is a change in the remote repository?
-
---
-
-`git pull` 
-
-Update repo with changes made to the remote repository
-
----
-
-```{r pushpull, fig.align='center', echo = FALSE,out.width=700} 
-knitr::include_graphics("img/pushpull.png")
+```{r branch, fig.align='center', echo = FALSE,out.width=700} 
+knitr::include_graphics("img/gitpush_newbranch.png")
 ```
 
 ---
 
-## Scenarios
-
-
-1. Changes to a document where different lines are modified  
-
---
-
-**Git can automatically merge the changes**
-
---
-
-2. Changes to a document where the same line(s) are modified  
-
---
-
-**Git CANNOT automatically merge the changes**
-**MERGE CONFLICT**
-
----
-
-class: middle, center, inverse
-
-# MERGE CONFLICTS
-
-
----
-
-## `git pull`
-
-
-1. **fetch** the content of the remote
-2. **merge** it into your repository
-
----
-
-## When you try to push...
-
-```{r mc, fig.align='center', echo = FALSE,out.width=900} 
-knitr::include_graphics("img/mc_gitpush.png")
-```
-
-> What happens if I try to pull?
-
-Scenario 1 = problem solved  
-
-Scenario 2 = merge conflict!
-
----
-
-## VS Code to fix merge conflicts
-
-what changes you want to keep?
-
-```{r mcvs, fig.align='center', echo = FALSE,out.width=900} 
-knitr::include_graphics("img/mcvscode.png")
-```
-
-
----
-
-
-class: middle, center
-
-### It is a good idea to pull before starting to work in your local changes!
-But what happens if you forget?
----
-
-class: middle, center, inverse
-
-# Stashing 
-#### local non-committed changes before pulling
-
----
-
-class: middle, center
-
-
-#### Please **commit your changes** or **stash** them before you merge.
 
 
 
 ---
 
 
-.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[ 
-
-## Attribution
-
-* [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan and the STAT 545 TAs
-* [Software Carpentry](https://software-carpentry.org/lessons/), specifically the Unix Shell and Git lessons
-
-                                                                                                                                      
-]
-
-
-
----
-
-class: inverse, middle, center
-
-## Tips lab 1
-
-Practice on your computer!
-
-Remember the office hours
-
-
----
-
-class: inverse, middle, center
-
-# Thank you!
-
-
-
-
-#### Florencia D'Andrea
-#### fdandrea @ cs.ubc.ca
