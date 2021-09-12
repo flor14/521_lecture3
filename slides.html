@@ -84,6 +84,9 @@ class: center, middle
 .footnote[[images: Unsplash](https://unsplash.com)]
 ---
 
+git show or git diff or git log -p. para ver cambios
+
+---
 
 class: center, middle, inverse
 
@@ -98,7 +101,7 @@ separate work
 
 * When features are completed, their branches will be merged into the main branch, often through a "pull request" where code is reviewed before it is merged. 
 
-
+&lt;img src="img/represent.png" width="200" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -140,7 +143,7 @@ separate work
 &gt; You Github repo is on the main branch
 
 .footnote[_Note: In older repos `main` branch was called `master` branch_]
-
+https://github.com/github/renaming
 ---
 
 `origin/HEAD`
@@ -180,18 +183,236 @@ class: center, inverse, middle
 
 
 .footnote["It is good practice to give branches a name that succinctly describes the feature that you want to develop."]
+
+
+---
+
+# SEEING HOW BRANCHES ARE RELATED
+
+
+---
+
+## In the shell
+
+* `git log` 
+* `git log --oneline`
+* `git log --oneline --all --graph`
+
+
+
+---
+
+## In VS Code
+
+* `code .`
+
+---
+
+## 1. Working locally
+
+
+
+---
+
+## 2. Adding the remote
+
+
+
+---
+
+&lt;img src="img/2.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+
+class: inverse, center, middle
+# FORKS
+
+---
+
+### How can I fork a repository?
+
+Forks are copies of other's repositories on GitHub that you own.
+
+&lt;img src="img/2.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+
+### How can I start developing in a forked repo
+
+You clone the fork of YOUR repo, not the original repo
+
+
+&lt;img src="img/3.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+
+&gt; What happens if you have access to a repo? Can you fork it too?
+
+---
+class: center, middle
+&lt;img src="img/5.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: center, middle
+&lt;img src="img/6.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: middle, inverse, center
+
+# DEVELOPING IN A FORKED REPO
+
+---
+
+### Work in a new local branch
+
+It is good practice to always create a branch when you are about to add changes to a fork
+
+```bash
+git switch -c new-branch
+```
+
+&lt;img src="img/7.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+
+#### When to merge?
+Good practice to have first pushed the branch to GitHub, and then created a pull request to let the other people on the team review the code and suggested any changes before merging it in.
+
+&lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
+
+
+When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. Since you don't have write access to the upstream repo, you have to request they the maintainer pull your code (remember that merging is part of what happens during a pull, so this is similar to what we did with branches via git merge, just that the code first needs to be fetched from your forked repo).
+
 ---
 
 ## Pushing to a new branch
 
-&lt;img src="img/gitpush_newbranch.png" width="700" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/gitpush_newbranch.png" width="900" style="display: block; margin: auto;" /&gt;
+
+.footnote[the word "upstream" is not referring to the GitHub branch you forked from. Instead, it is referring to a branch that will be created on your repo (origin).]
+
+
+
+---
+
+```bash
+git push --set-upstream origin new-branch
+```
+&lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+
+---
+
+
+class: inverse, center, middle
+
+# CREATING A PULL REQUEST
+
+---
+
+To create PR, you click the green bottom "Compare and pull request".
+"Create pull request".
+Add reviewers if necessary
+If they approved it the PR could be merged
+
+
+&lt;img src="img/9.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+You can reference this pull request when typing Markdown in issues and other PRs on GitHub by typing # followed by the number of the PR, e.g. "Please see PR #2 for a fix to this issue". In the body of the message you type when opening the PR, you can also indicate if it is fixing a currently open issue by typing /close #1 to close issue number 1 (PRs and issues use the same numbering system, so if there is already an open issue, the first PR would be get the number 2).
+
+
+---
+
+class: inverse, center, middle
+
+# KEEPING YOUR REMOTE (ORIGIN) UP TO DATE WITH THE UPSTREAM REMOTE 
+
+---
+
+### New commit in upstream remote
+
+&lt;img src="img/11.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### Fork again? 
+
+&lt;img src="img/12.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+git remote -v
+
+origin  https://github.ubc.ca/jostblom/fork-demo.git (fetch)
+origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
+
+&gt; Remember that pull = fetch + merge
+
+
+
+
+---
+
+### Add remote and pull
+
+
+```bash
+git remote add upstream https://github.ubc.ca/MDS-2021-22/fork-demo.git
+git pull upstream master`
+```
+
+
+&lt;img src="img/13.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Push to origin
+
+```bash
+git push
+```
+
+&lt;img src="img/14.png" width="700" style="display: block; margin: auto;" /&gt;
+
+origin  https://github.ubc.ca/jostblom/fork-demo.git (fetch)
+origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
+upstream  https://github.ubc.ca/MDS-2020-21/fork-demo.git (fetch)
+upstream  https://github.ubc.ca/MDS-2020-21/fork-demo.git (push)
+
+&gt; git pull, the default behavior is to pull the master branch from the origin remote (which in this case is your forked repo) 
+&gt; To pull the changes from upstream's master branch instead of origin's, we type git pull upstream master. 
+
+To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
 
 ---
 
 
 
 
----
+# Merging *
+
+Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from this parent over here and this one over here, and the set of all their parents."
 
 
     </textarea>
