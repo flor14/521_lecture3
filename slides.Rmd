@@ -105,7 +105,7 @@ class: bottom
 
 ## Lecture 3
 
-1 **Develop a feature on a branch** in a Git repo.
+1. **Develop a feature on a branch** in a Git repo.
 
 --
 
@@ -120,27 +120,13 @@ class: bottom
 4. Open a **pull request** from your forked repo to the upstream repo
 
 
----
-
-
-class: center, middle
-
-```{r obj2, fig.align='center', echo = FALSE,out.width=900} 
-knitr::include_graphics("img/obj2.png")
-```
-
-
-.footnote[[images: Unsplash](https://unsplash.com)]
----
-
-git show or git diff or git log -p. para ver cambios
 
 ---
 
 class: center, middle, inverse
 
 # BRANCHES
-separate work 
+separate work that is happening on the main/master branch of the repo 
 
 ---
 
@@ -148,7 +134,13 @@ separate work
 
 * You don't want the repository's default branch to be updated with every commit of a half-finished feature.
 
+--
+
 * When features are completed, their branches will be merged into the main branch, often through a "pull request" where code is reviewed before it is merged. 
+
+--
+
+
 
 ```{r commits, fig.align='center', echo = FALSE,out.width=200} 
 knitr::include_graphics("img/represent.png")
@@ -157,64 +149,95 @@ knitr::include_graphics("img/represent.png")
 
 ---
 
+## Feature-based development
 
-```{r obj4, fig.align='center', echo = FALSE,out.width=500} 
+```{r obj4, fig.align='center', echo = FALSE,out.width=400} 
 knitr::include_graphics("img/branches-house-analogy.png")
 ```
 
 
-```{r house2, fig.align='center', echo = FALSE,out.width=500} 
+```{r house2, fig.align='center', echo = FALSE,out.width=400} 
 knitr::include_graphics("img/house.jfif")
 ```
 
-.footnote[[house image: Unsplash](https://unsplash.com)]
+.footnote[[Unsplash](https://unsplash.com)]
 
 ---
 
-###
+class: middle, center, inverse
 
-`HEAD -> main`
+# How branches show up in the log output
+
+---
+
+class: center, middle
+
+
+## `main` is the default branch
+
+
+
+
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
+---
+
+### How branches show up in the log output
+
+```bash
+HEAD -> main
+```
+
+--
 
 **main** is your default local branch
+(or **master**) 
 
-**HEAD** is where you currently (on the main branch)  
+--
 
+**HEAD** is where you currently are   
 
+--
 
-> You are on the main branch
+#### _You are on the main branch_
 
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
 
 ---
 
-###
+### How branches show up in the log output
 
-`origin/main`
+```bash
+origin/main
+```
+
+--
 
 **origin** is a nickname for your remote repo on GitHub
 
+--
+
 **origin/main** is the main branch on your GitHub repo
 
+--
 
-> You Github repo is on the main branch
+#### _You Github repo is on the main branch_
 
-.footnote[_Note: In older repos `main` branch was called `master` branch_]
-https://github.com/github/renaming
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
 ---
 
-`origin/HEAD`
+### How branches show up in the log output
 
-You don't need to care about origin/HEAD, it just point to the default remote branch, 
+```bash
+origin/HEAD
+```
+--
+
+You don't need to be concern about origin/HEAD, it just point to the default remote branch, 
 which will always be main unless you mess around with the settings on the GitHub webpage.
 
-.footnote[_Note: In older repos `main` branch was called `master` branch_]
-
----
-
-
-## Now all together
-
-Now let's see what happens when we make a commit locally
-
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
 
 
 ---
@@ -232,7 +255,7 @@ class: center, inverse, middle
 #### `git switch`
 
 
-##  Switch to a new branch
+## Switch to a new branch
 #### `git switch -c <name new branch>`
 #### `git switch -c lecture-todo`
 
@@ -242,6 +265,22 @@ class: center, inverse, middle
 
 ---
 
+class: middle, center
+
+```{r lecturetodo, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/switch.png")
+```
+
+
+
+
+
+
+---
+
+
+class: inverse, center, middle
+
 # SEEING HOW BRANCHES ARE RELATED
 
 
@@ -249,10 +288,13 @@ class: center, inverse, middle
 
 ## In the shell
 
-* `git log` 
-* `git log --oneline`
+
 * `git log --oneline --all --graph`
 
+
+```{r log, fig.align='center', echo = FALSE,out.width=700} 
+ knitr::include_graphics("img/tree.png")
+```
 
 
 ---
@@ -261,41 +303,54 @@ class: center, inverse, middle
 
 * `code .`
 
----
-
-## 1. Working locally
-
-
-
----
-
-## 2. Adding the remote
-
-
-
----
-
-```{r 1, fig.align='center', echo = FALSE,out.width=700} 
-knitr::include_graphics("img/2.png")
+```{r vs, fig.align='center', echo = FALSE,out.width=700} 
+ knitr::include_graphics("img/vscode.png")
 ```
 
 ---
-
-
 
 class: inverse, center, middle
 # FORKS
 
 ---
+class: middle, center
+
+#### If you want the code from someone else's repository, where you are not a member or official collaborator, **then you can clone it and use it on computer.** 
+
+--
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+#### However, **you cannot push your changes back to the GitHub repository** because you don't have the write permissions to that repository.
+
+]
+
+
+
+---
 
 ### How can I fork a repository?
 
-Forks are copies of other's repositories on GitHub that you own.
+Forks are copies of others repositories on GitHub that you own.
 
-```{r 2, fig.align='center', echo = FALSE,out.width=700} 
+**"upstream" repository** the one you forked from
+
+ **origin** your repository
+
+```{r 2, fig.align='center', echo = FALSE,out.width=800} 
 knitr::include_graphics("img/2.png")
 ```
 
+
+
+
+---
+
+class: center, middle
+
+```{r f, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/fork.png")
+```
 
 
 
@@ -306,13 +361,12 @@ knitr::include_graphics("img/2.png")
 You clone the fork of YOUR repo, not the original repo
 
 
-```{r 3, fig.align='center', echo = FALSE,out.width=700} 
+```{r 3, fig.align='center', echo = FALSE,out.width=800} 
 knitr::include_graphics("img/3.png")
 ```
 
 
 
-> What happens if you have access to a repo? Can you fork it too?
 
 ---
 class: center, middle
@@ -349,19 +403,18 @@ knitr::include_graphics("img/7.png")
 ```
 
 
-
 ---
 
 
-#### When to merge?
-Good practice to have first pushed the branch to GitHub, and then created a pull request to let the other people on the team review the code and suggested any changes before merging it in.
+
+### When to merge?
+When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. 
 
 ```{r 8, fig.align='center', echo = FALSE,out.width=600} 
 knitr::include_graphics("img/8.png")
 ```
 
 
-When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. Since you don't have write access to the upstream repo, you have to request they the maintainer pull your code (remember that merging is part of what happens during a pull, so this is similar to what we did with branches via git merge, just that the code first needs to be fetched from your forked repo).
 
 ---
 
@@ -377,6 +430,8 @@ knitr::include_graphics("img/gitpush_newbranch.png")
 
 ---
 
+## Pushing to a new branch
+
 ```bash
 git push --set-upstream origin new-branch
 ```
@@ -385,9 +440,15 @@ knitr::include_graphics("img/8.png")
 ```
 
 
+---
+
+class: middle, center
+```{r PR, fig.align='center', echo = FALSE,out.width=600} 
+knitr::include_graphics("img/pullrequest.jpg")
+```
 
 
-
+.footnote[The Turing Way and Scriberia (2020)]
 
 ---
 
@@ -398,21 +459,38 @@ class: inverse, center, middle
 
 ---
 
+## Pull request
+
 To create PR, you click the green bottom "Compare and pull request".
-"Create pull request".
-Add reviewers if necessary
-If they approved it the PR could be merged
+- Add reviewers if necessary
+- If they approved it the PR could be merged
 
+```{r pr9, fig.align='center', echo = FALSE,out.width=500} 
+knitr::include_graphics("img/pr.png")
+```
 
-```{r 9, fig.align='center', echo = FALSE,out.width=700} 
+---
+
+class: middle, center
+
+```{r 91, fig.align='center', echo = FALSE,out.width=900} 
 knitr::include_graphics("img/9.png")
 ```
 
 
+---
+class: middle, center
+
+```{r prpr, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/prdemo.png")
+```
 
 ---
+class: middle, center
 
-You can reference this pull request when typing Markdown in issues and other PRs on GitHub by typing # followed by the number of the PR, e.g. "Please see PR #2 for a fix to this issue". In the body of the message you type when opening the PR, you can also indicate if it is fixing a currently open issue by typing /close #1 to close issue number 1 (PRs and issues use the same numbering system, so if there is already an open issue, the first PR would be get the number 2).
+```{r prpr2, fig.align='center', echo = FALSE,out.width=900} 
+knitr::include_graphics("img/prdemo_merged.png")
+```
 
 
 ---
@@ -441,12 +519,14 @@ knitr::include_graphics("img/12.png")
 ---
 
 
-git remote -v
+### `git remote -v`
 
-origin  https://github.ubc.ca/jostblom/fork-demo.git (fetch)
-origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
+```bash
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
+```
 
-> Remember that pull = fetch + merge
+
 
 
 
@@ -457,7 +537,7 @@ origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
 
 
 ```bash
-git remote add upstream https://github.ubc.ca/MDS-2021-22/fork-demo.git
+git remote add upstream https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git
 git pull upstream master`
 ```
 
@@ -478,23 +558,73 @@ git push
 knitr::include_graphics("img/14.png")
 ```
 
-origin  https://github.ubc.ca/jostblom/fork-demo.git (fetch)
-origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
-upstream  https://github.ubc.ca/MDS-2020-21/fork-demo.git (fetch)
-upstream  https://github.ubc.ca/MDS-2020-21/fork-demo.git (push)
-
-> git pull, the default behavior is to pull the master branch from the origin remote (which in this case is your forked repo) 
-> To pull the changes from upstream's master branch instead of origin's, we type git pull upstream master. 
-
-To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
 
 ---
 
+## Push to the forked repo
+
+To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
 
 
 
-# Merging *
+```bash
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
+upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (fetch)
+upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (push)
+```
 
-Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from this parent over here and this one over here, and the set of all their parents."
+---
+
+## Markdown
+
+.pull-left[
+
+```bash
+- [x] Introduce lecture
+- [ ] Explain branches
+- [ ] Explain forks
+```
+]
+
+.pull-right[
+
+```{r list2, fig.align='center', echo = FALSE,out.width=300} 
+knitr::include_graphics("img/list.png")
+```
+]
+
+.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
 
 
+
+---
+
+## Markdown
+
+.pull-left[
+```{r prv2, fig.align='center', echo = FALSE,out.width=200} 
+knitr::include_graphics("img/code.png")
+```
+]
+
+.pull-right[
+
+```{r prv, fig.align='center', echo = FALSE,out.width=200} 
+knitr::include_graphics("img/preview.png")
+```
+
+]
+
+.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
+
+
+
+
+---
+
+class: middle, center, inverse
+
+## Thank you!
+
+---

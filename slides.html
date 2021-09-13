@@ -58,7 +58,7 @@ class: bottom
 
 ## Lecture 3
 
-1 **Develop a feature on a branch** in a Git repo.
+1. **Develop a feature on a branch** in a Git repo.
 
 --
 
@@ -73,25 +73,13 @@ class: bottom
 4. Open a **pull request** from your forked repo to the upstream repo
 
 
----
-
-
-class: center, middle
-
-&lt;img src="img/obj2.png" width="900" style="display: block; margin: auto;" /&gt;
-
-
-.footnote[[images: Unsplash](https://unsplash.com)]
----
-
-git show or git diff or git log -p. para ver cambios
 
 ---
 
 class: center, middle, inverse
 
 # BRANCHES
-separate work 
+separate work that is happening on the main/master branch of the repo 
 
 ---
 
@@ -99,67 +87,104 @@ separate work
 
 * You don't want the repository's default branch to be updated with every commit of a half-finished feature.
 
+--
+
 * When features are completed, their branches will be merged into the main branch, often through a "pull request" where code is reviewed before it is merged. 
+
+--
+
+
 
 &lt;img src="img/represent.png" width="200" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
+## Feature-based development
 
-&lt;img src="img/branches-house-analogy.png" width="500" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/branches-house-analogy.png" width="400" style="display: block; margin: auto;" /&gt;
 
 
-&lt;img src="img/house.jfif" width="500" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/house.jfif" width="400" style="display: block; margin: auto;" /&gt;
 
-.footnote[[house image: Unsplash](https://unsplash.com)]
+.footnote[[Unsplash](https://unsplash.com)]
 
 ---
 
-###
+class: middle, center, inverse
 
-`HEAD -&gt; main`
+# How branches show up in the log output
+
+---
+
+class: center, middle
+
+
+## `main` is the default branch
+
+
+
+
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
+---
+
+### How branches show up in the log output
+
+```bash
+HEAD -&gt; main
+```
+
+--
 
 **main** is your default local branch
+(or **master**) 
 
-**HEAD** is where you currently (on the main branch)  
+--
 
+**HEAD** is where you currently are   
 
+--
 
-&gt; You are on the main branch
+#### _You are on the main branch_
 
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
 
 ---
 
-###
+### How branches show up in the log output
 
-`origin/main`
+```bash
+origin/main
+```
+
+--
 
 **origin** is a nickname for your remote repo on GitHub
 
+--
+
 **origin/main** is the main branch on your GitHub repo
 
+--
 
-&gt; You Github repo is on the main branch
+#### _You Github repo is on the main branch_
 
-.footnote[_Note: In older repos `main` branch was called `master` branch_]
-https://github.com/github/renaming
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
+
 ---
 
-`origin/HEAD`
+### How branches show up in the log output
 
-You don't need to care about origin/HEAD, it just point to the default remote branch, 
+```bash
+origin/HEAD
+```
+--
+
+You don't need to be concern about origin/HEAD, it just point to the default remote branch, 
 which will always be main unless you mess around with the settings on the GitHub webpage.
 
-.footnote[_Note: In older repos `main` branch was called `master` branch_]
-
----
-
-
-## Now all together
-
-Now let's see what happens when we make a commit locally
-
+.footnote[_Note: [`master` branch is now called `main` branch](https://github.com/github/renaming)_]
 
 
 ---
@@ -177,7 +202,7 @@ class: center, inverse, middle
 #### `git switch`
 
 
-##  Switch to a new branch
+## Switch to a new branch
 #### `git switch -c &lt;name new branch&gt;`
 #### `git switch -c lecture-todo`
 
@@ -187,6 +212,20 @@ class: center, inverse, middle
 
 ---
 
+class: middle, center
+
+&lt;img src="img/switch.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+
+---
+
+
+class: inverse, center, middle
+
 # SEEING HOW BRANCHES ARE RELATED
 
 
@@ -194,10 +233,11 @@ class: center, inverse, middle
 
 ## In the shell
 
-* `git log` 
-* `git log --oneline`
+
 * `git log --oneline --all --graph`
 
+
+&lt;img src="img/tree.png" width="700" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -206,37 +246,48 @@ class: center, inverse, middle
 
 * `code .`
 
----
-
-## 1. Working locally
-
-
+&lt;img src="img/vscode.png" width="700" style="display: block; margin: auto;" /&gt;
 
 ---
-
-## 2. Adding the remote
-
-
-
----
-
-&lt;img src="img/2.png" width="700" style="display: block; margin: auto;" /&gt;
-
----
-
-
 
 class: inverse, center, middle
 # FORKS
 
 ---
+class: middle, center
+
+#### If you want the code from someone else's repository, where you are not a member or official collaborator, **then you can clone it and use it on computer.** 
+
+--
+
+.bg-washed-blue.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+
+#### However, **you cannot push your changes back to the GitHub repository** because you don't have the write permissions to that repository.
+
+]
+
+
+
+---
 
 ### How can I fork a repository?
 
-Forks are copies of other's repositories on GitHub that you own.
+Forks are copies of others repositories on GitHub that you own.
 
-&lt;img src="img/2.png" width="700" style="display: block; margin: auto;" /&gt;
+**"upstream" repository** the one you forked from
 
+ **origin** your repository
+
+&lt;img src="img/2.png" width="800" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+
+class: center, middle
+
+&lt;img src="img/fork.png" width="900" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -247,11 +298,10 @@ Forks are copies of other's repositories on GitHub that you own.
 You clone the fork of YOUR repo, not the original repo
 
 
-&lt;img src="img/3.png" width="700" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/3.png" width="800" style="display: block; margin: auto;" /&gt;
 
 
 
-&gt; What happens if you have access to a repo? Can you fork it too?
 
 ---
 class: center, middle
@@ -282,17 +332,16 @@ git switch -c new-branch
 &lt;img src="img/7.png" width="700" style="display: block; margin: auto;" /&gt;
 
 
-
 ---
 
 
-#### When to merge?
-Good practice to have first pushed the branch to GitHub, and then created a pull request to let the other people on the team review the code and suggested any changes before merging it in.
+
+### When to merge?
+When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. 
 
 &lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
 
 
-When you are working on a branch you have to push your branch to GitHub and ask for it to be merged via a pull request. Since you don't have write access to the upstream repo, you have to request they the maintainer pull your code (remember that merging is part of what happens during a pull, so this is similar to what we did with branches via git merge, just that the code first needs to be fetched from your forked repo).
 
 ---
 
@@ -306,15 +355,21 @@ When you are working on a branch you have to push your branch to GitHub and ask 
 
 ---
 
+## Pushing to a new branch
+
 ```bash
 git push --set-upstream origin new-branch
 ```
 &lt;img src="img/8.png" width="600" style="display: block; margin: auto;" /&gt;
 
 
+---
+
+class: middle, center
+&lt;img src="img/pullrequest.jpg" width="600" style="display: block; margin: auto;" /&gt;
 
 
-
+.footnote[The Turing Way and Scriberia (2020)]
 
 ---
 
@@ -325,19 +380,30 @@ class: inverse, center, middle
 
 ---
 
+## Pull request
+
 To create PR, you click the green bottom "Compare and pull request".
-"Create pull request".
-Add reviewers if necessary
-If they approved it the PR could be merged
+- Add reviewers if necessary
+- If they approved it the PR could be merged
 
-
-&lt;img src="img/9.png" width="700" style="display: block; margin: auto;" /&gt;
-
-
+&lt;img src="img/pr.png" width="500" style="display: block; margin: auto;" /&gt;
 
 ---
 
-You can reference this pull request when typing Markdown in issues and other PRs on GitHub by typing # followed by the number of the PR, e.g. "Please see PR #2 for a fix to this issue". In the body of the message you type when opening the PR, you can also indicate if it is fixing a currently open issue by typing /close #1 to close issue number 1 (PRs and issues use the same numbering system, so if there is already an open issue, the first PR would be get the number 2).
+class: middle, center
+
+&lt;img src="img/9.png" width="900" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: middle, center
+
+&lt;img src="img/prdemo.png" width="900" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle, center
+
+&lt;img src="img/prdemo_merged.png" width="900" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -362,12 +428,14 @@ class: inverse, center, middle
 ---
 
 
-git remote -v
+### `git remote -v`
 
-origin  https://github.ubc.ca/jostblom/fork-demo.git (fetch)
-origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
+```bash
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
+```
 
-&gt; Remember that pull = fetch + merge
+
 
 
 
@@ -378,7 +446,7 @@ origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
 
 
 ```bash
-git remote add upstream https://github.ubc.ca/MDS-2021-22/fork-demo.git
+git remote add upstream https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git
 git pull upstream master`
 ```
 
@@ -395,26 +463,70 @@ git push
 
 &lt;img src="img/14.png" width="700" style="display: block; margin: auto;" /&gt;
 
-origin  https://github.ubc.ca/jostblom/fork-demo.git (fetch)
-origin  https://github.ubc.ca/jostblom/fork-demo.git (push)
-upstream  https://github.ubc.ca/MDS-2020-21/fork-demo.git (fetch)
-upstream  https://github.ubc.ca/MDS-2020-21/fork-demo.git (push)
-
-&gt; git pull, the default behavior is to pull the master branch from the origin remote (which in this case is your forked repo) 
-&gt; To pull the changes from upstream's master branch instead of origin's, we type git pull upstream master. 
-
-To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
 
 ---
 
+## Push to the forked repo
+
+To update our forked repo, we can now push as usually by typing git push, since the default behavior is git push origin master.
 
 
 
-# Merging *
+```bash
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (fetch)
+origin  https://github.ubc.ca/fdandrea/DSCI_521_fork_demo.git (push)
+upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (fetch)
+upstream  https://github.ubc.ca/MDS-2021-22/DSCI_521_fork_demo.git (push)
+```
 
-Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from this parent over here and this one over here, and the set of all their parents."
+---
+
+## Markdown
+
+.pull-left[
+
+```bash
+- [x] Introduce lecture
+- [ ] Explain branches
+- [ ] Explain forks
+```
+]
+
+.pull-right[
+
+&lt;img src="img/list.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
 
 
+
+---
+
+## Markdown
+
+.pull-left[
+&lt;img src="img/code.png" width="200" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="img/preview.png" width="200" style="display: block; margin: auto;" /&gt;
+
+]
+
+.footnote[[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)]
+
+
+
+
+---
+
+class: middle, center, inverse
+
+## Thank you!
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
