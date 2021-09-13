@@ -307,6 +307,9 @@ class: inverse, center, middle
  knitr::include_graphics("img/vscode.png")
 ```
 
+
+To merge the branches run `git merge lecture-todo`
+
 ---
 
 class: inverse, center, middle
